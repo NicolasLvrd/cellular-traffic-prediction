@@ -32,11 +32,10 @@ class LSTMModel(nn.Module):
         output = self.fc(output[:, -1, :])
         return output
 
-# Load data from .mat file
-mat_file = scipy.io.loadmat("datasets/data11Febto13Feb.mat")
-print(mat_file.keys())
-data = mat_file['data']  # Assuming 'data' key contains feature matrix
-print(data[0])
+
+# Load data from .csv
+data = np.genfromtxt("datasets/data11Febto13Feb.csv", delimiter=",", dtype=str)
+print(data)
 
 # Extract features: [index, date, ip_source, ip_destination, protocol, packet_size]
 data = data[:, 1:]  # Ignore the index column
